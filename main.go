@@ -12,11 +12,18 @@ func main() {
 		"chunk32 -d",
 	)
 
+	upperFlag := flag.Bool(
+		"u",
+		false,
+		"chunk32 -u",
+	)
+
 	flag.Parse()
 
 	if decodeFlag != nil && *decodeFlag {
 		decodeFromStdin()
 	} else {
-		encodeFromStdin()
+		upper := upperFlag != nil && *upperFlag
+		encodeFromStdin(upper)
 	}
 }

@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-func encodeFromStdin() {
+func encodeFromStdin(upper bool) {
 	input, _ := ioutil.ReadAll(os.Stdin)
 	if len(input) == 0 {
 		return
@@ -19,8 +19,9 @@ func encodeFromStdin() {
 	// fmt.Println(hex.EncodeToString(input))
 	// fmt.Println("----------------- Chunk58 ------------------")
 	text := Chunk32Encode(input)
-	// TODO: add a flag to keep it uppercase
-	text = strings.ToLower(text)
+	if !upper {
+		text = strings.ToLower(text)
+	}
 	fmt.Println(text)
 	// fmt.Println("--------------------------------------------")
 }
