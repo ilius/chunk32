@@ -14,7 +14,7 @@ import (
 var CHUNK_SIZE = 10 // should be a factor of 5
 
 func addSpacesToPlainTextLine(line string, size int) string {
-	return strings.Join(splitStringIntoChunks(line, 4), " ")
+	return strings.Join(splitStringIntoChunks(line, size), " ")
 }
 
 func Chunk32Encode(data []byte) string {
