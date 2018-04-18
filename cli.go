@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-func encodeFromStdin(upper bool) {
+func encodeFromStdin(upper bool, check bool) {
 	input, _ := ioutil.ReadAll(os.Stdin)
 	if len(input) == 0 {
 		return
@@ -18,7 +18,7 @@ func encodeFromStdin(upper bool) {
 	// fmt.Println("------------------ Hex Data ------------------")
 	// fmt.Println(hex.EncodeToString(input))
 	// fmt.Println("----------------- Chunk58 ------------------")
-	text := Chunk32Encode(input)
+	text := Chunk32Encode(input, check)
 	if !upper {
 		text = strings.ToLower(text)
 	}
