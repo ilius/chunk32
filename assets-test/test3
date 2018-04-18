@@ -1,0 +1,3 @@
+Independently, semantic versioning has become the de facto standard for describing software versions in many language communities, including the Go community. Using semantic versioning, later versions are expected to be backwards-compatible with earlier versions, but only within a single major version: v1.2.3 must be compatible with v1.2.1 and v1.1.5, but v2.3.4 need not be compatible with any of those.
+
+If we adopt semantic versioning for Go packages, as most Go developers expect, then the import compatibility rule requires that different major versions must use different import paths. This observation led us to semantic import versioning, in which versions starting at v2.0.0 include the major version in the import path: my/thing/v2/sub/pkg.
