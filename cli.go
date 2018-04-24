@@ -15,6 +15,7 @@ func encodeFromStdin(upper bool, check bool) {
 	if len(input) == 0 {
 		return
 	}
+	input = bytes.TrimRight(input, "\n")
 	// fmt.Println("------------------ Hex Data ------------------")
 	// fmt.Println(hex.EncodeToString(input))
 	// fmt.Println("----------------- Chunk58 ------------------")
@@ -31,7 +32,7 @@ func decodeFromStdin() {
 	if len(input) == 0 {
 		return
 	}
-	input = bytes.TrimSpace(input)
+	input = bytes.TrimRight(input, "\n")
 	output, err := Chunk32Decode(string(input))
 	if err != nil {
 		panic(err)
