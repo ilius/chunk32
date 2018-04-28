@@ -39,7 +39,7 @@ func encodeChunkWithCheck(chunk []byte) string {
 	line, lastByte := line[:n-1], line[n-1]
 	line = addTrailingDashes(line, 4)
 	line = addSpacesToPlainTextLine(line, 4)
-	return line + "  " + string(lastByte)
+	return line + " " + string(lastByte)
 }
 
 func Chunk32Encode(data []byte, check bool) string {
