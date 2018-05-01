@@ -2,6 +2,7 @@
 
 # Encode a file (in Linux/Unix)
 Type `cat FILE_PATH | chunk32`.
+
 Example:
 
     $ cat ~/roses.txt | chunk32
@@ -49,6 +50,7 @@ Type `chunk32 -d | gpg -d`, then type/paste your text, then press Enter and then
 
 # Check Character
 Check character can be enabled with `-check` flag when encoding.
+
 Check character is one extra character at the end of each line of encoded text, which is the signature of that line (chunk of data) that can help identifying possible errors (in typing or storing the encoded data)
 For example:
 
