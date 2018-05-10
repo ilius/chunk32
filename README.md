@@ -45,7 +45,7 @@ Example:
 # Decode from Standard input (in Linux/Unix)
 Type `chunk32 -d` and Enter, then type/paste the chunk32-encoded text, then press Control+D
 
-# Decode and decript from Standard input (in Linux/Unix)
+# Decode and decrypt from Standard input (in Linux/Unix)
 Type `chunk32 -d | gpg -d`, then type/paste your text, then press Enter and then Control+D, then it will prompt for a password and your need to enter the password and press Enter, then the final text/binary data will be displayed. If it's binary, you may want to pipe it again `chunk32` (like `chunk32 -d | gpg -d | chunk32`) or `base64` or for example (Cryptocurrency private keys usually use base58)
 
 # Check Character
