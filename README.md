@@ -4,7 +4,7 @@ We use [Crockford's Base32](https://www.crockford.com/base32.html) encoding whic
 Since Base32 maps each 5 bits to a 8 bits, so it maps each 5 bytes to 8 bytes.
 And 16 characters is a reasonable number of characters to use in every row (it fits in a notebook paper for example).
 
-So first we split the input binary data into chunks of 5 bytes, then encode each chunk with Crockford's Base32, and each encoded text becomes a line.
+So first we split the input binary data into chunks of 10 bytes, then encode each chunk with Crockford's Base32, and each encoded text becomes a line.
 
 Another benefit of spiting into chunks / lines, is that we can take advantage of **Check Symbol** supported by [Crockford's Base32](https://www.crockford.com/base32.html), by adding the **Check Symbol** of each chunk / line to the end of that line, as show in examples below. So that if you mistype / misread one character in each row (16 characters), the check symbol will most likely mismatch and you would know. Specially if the data is compressed or encrypted, this will prevent the wrong data going through the next channel (decompression or decryption) and save you some time.
 
