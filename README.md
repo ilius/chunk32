@@ -32,8 +32,8 @@ Type `gpg -c | chunk32`, then it will prompt for a password and your need to ent
 The output should be longer than without encryption.
 Example:
 
-    $ gpg -c | chunk32 
-    Roses are red,     
+    $ gpg -c | chunk32
+    Roses are red,
     Violets are blue,
     sugar is sweet,
     And so are you.
