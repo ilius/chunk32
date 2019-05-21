@@ -9,28 +9,35 @@ func main() {
 	decodeFlag := flag.Bool(
 		"d",
 		false,
-		"chunk32 -d",
+		"Decode:\nchunk32 -d",
 	)
 
 	upperFlag := flag.Bool(
 		"u",
 		false,
-		"chunk32 -u",
+		"Use uppercase characters (when encoding)\nchunk32 -u",
 	)
 
 	checkFlag := flag.Bool(
 		"check",
 		false,
-		"chunk32 -check",
+		"Add check sybmol (when decoding)\nchunk32 -check",
+	)
+
+	noNewlineFlag := flag.Bool(
+		"n",
+		false,
+		"Do not print newline at the end (mostly useful for decode)\nchunk32 -d -n",
 	)
 
 	flag.Parse()
 
+	noNewline := noNewlineFlag != nil && *noNewlineFlag
 	if decodeFlag != nil && *decodeFlag {
-		decodeFromStdin()
+		decodeFromStdin(noNewline)
 	} else {
 		upper := upperFlag != nil && *upperFlag
 		check := checkFlag != nil && *checkFlag
-		encodeFromStdin(upper, check)
+		encodeFromStdin(upper, check, noNewline)
 	}
 }

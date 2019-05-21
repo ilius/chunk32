@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-func encodeFromStdin(upper bool, check bool) {
+func encodeFromStdin(upper bool, check bool, noNewline bool) {
 	input, _ := ioutil.ReadAll(os.Stdin)
 	if len(input) == 0 {
 		return
@@ -23,11 +23,14 @@ func encodeFromStdin(upper bool, check bool) {
 	if !upper {
 		text = strings.ToLower(text)
 	}
-	fmt.Println(text)
-	// fmt.Println("--------------------------------------------")
+	if noNewline {
+		fmt.Print(text)
+	} else {
+		fmt.Println(text)
+	}
 }
 
-func decodeFromStdin() {
+func decodeFromStdin(noNewline bool) {
 	input, _ := ioutil.ReadAll(os.Stdin)
 	if len(input) == 0 {
 		return
@@ -38,6 +41,10 @@ func decodeFromStdin() {
 		panic(err)
 	}
 	// TODO: add a flag to print hex-encoded
-	fmt.Println(string(output))
+	if noNewline {
+		fmt.Print(string(output))
+	} else {
+		fmt.Println(string(output))
+	}
 	// fmt.Println(hex.EncodeToString(output))
 }
