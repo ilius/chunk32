@@ -16,6 +16,11 @@ So first we split the input binary data into chunks of 10 bytes, then encode eac
 Another benefit of spiting into chunks / lines, is that we can take advantage of **Check Symbol** supported by [Crockford's Base32](https://www.crockford.com/base32.html), by adding the **Check Symbol** of each chunk / line to the end of that line, as shown in [examples below](#check-character). So that if you mistype / misread one character in each row (16 characters), the check symbol will most likely mismatch and you would know. Specially if the data is compressed or encrypted, this will prevent the wrong data going through the next channel (decompression or decryption) and save you some time.
 
 
+# How to install it
+First [install Go](https://golang.org/doc/install), then open a command line and run:
+
+    go get github.com/ilius/chunk32
+
 
 # Encode a file (in Linux/Unix)
 Type `cat FILE_PATH | chunk32`.
