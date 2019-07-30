@@ -1,3 +1,10 @@
+# What is it for?
+The use case is that you have a binary data, possibly an encrypted text message, and you want for write it down manually on a paper (for example) because it's *so sensitive* that you don't want to store it on your computer (or you just want the paper as backup in case your computer / hard drive was ever broken or stolen), and you definitly *can't risk exposing that data to a printer device* (specially one that is owned by somebody else).
+
+Another case is that you want to read this binary data (or encrypted text message) over a telephone line (that is not very secure).
+
+I made a character/text encoding special for these kinds of cases.
+
 # How does it work?
 We use [Crockford's Base32](https://www.crockford.com/base32.html) encoding which is more suitable than other Base32 variants (because it avoids using both of similar characters like I and one, or O and zero).
 
