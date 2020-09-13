@@ -1,19 +1,21 @@
 # What is it for?
-The use case is that you have a binary data, possibly an encrypted text message, and you want for write it down manually on a paper (for example) because it's *so sensitive* that you don't want to store it on your computer (or you just want the paper as backup in case your computer / hard drive was ever broken or stolen), and you definitly *can't risk exposing that data to a printer device* (specially one that is owned by somebody else).
+The use case is that you have a binary data, possibly an encrypted text message, and you want for write it down manually on a paper (for example) because it's *so sensitive* that you don't want to store it on your computer (or you just want the paper as backup in case your computer / hard drive was ever broken or stolen), and you definitely *can't risk exposing that data to a printer device* (specially one that is owned by somebody else).
 
 Another case is that you want to read this binary data (or encrypted text message) over a telephone line (that is not very secure).
 
 I made a character/text encoding special for these kinds of cases.
 
 # How does it work?
-We use [Crockford's Base32](https://www.crockford.com/base32.html) encoding which is more suitable than other Base32 variants (because it avoids using both of similar characters like I and one, or O and zero).
+We use [Crockford's Base32](https://www.crockford.com/base32.html) encoding which is more suitable than other Base32 variants (because it avoids using both of similar characters like `I`, `L` and one, or `O` and zero). And we specially avoid Base58 or Base64 because they contain more visually similar letters, and they use both uppercase and lowercase letters, which makes it much harder to duplicate manually (read and write down) or read to someone else (in person or over phone).
+
+Although Base32-encoded string is ~%20 longer than Base64-encoded and ~%17 longer than Base58-encoded (for large inputs), but using Crockford's Base32 saves a lot of time for the mentioned purposes (you can test and see)
 
 Since Base32 maps each 5 bits to a 8 bits, so it maps each 5 bytes to 8 bytes.
-And 16 characters is a reasonable number of characters to use in every row (it fits in a notebook paper for example).
+And 16 characters is a reasonable number of characters to use in every row/line (it fits in a notebook paper for example).
 
 So first we split the input binary data into chunks of 10 bytes, then encode each chunk with Crockford's Base32, and each encoded text becomes a line.
 
-The benefit of splitting into chunks (each becoming a line), is that we can take advantage of **Check Symbol** supported by [Crockford's Base32](https://www.crockford.com/base32.html), by adding the **Check Symbol** of each chunk / line to the end of that line, as shown in [examples below](#check-character). So that if you mistype / misread one character in each row (16 characters), the check symbol will most likely mismatch and you would know. Specially if the data is compressed or encrypted, this will prevent the wrong data going through the next channel (decompression or decryption) and save you some time.
+The benefit of splitting into chunks (each becoming a line), is that we can take advantage of **Check Symbol** supported by [Crockford's Base32](https://www.crockford.com/base32.html), by adding the **Check Symbol** of each chunk / line to the end of that line, as shown in [examples below](#check-character). So that if you mistype / misread a few characters in each row (16 characters), the check symbol will almost certainly mismatch (very low possibility it does not) and you would know. Specially if the data is compressed or encrypted, this will prevent the wrong data going through the next channel (decompression or decryption) and save you some time. And even if the receiver does not validate the check symbol until it's too late (the original data is not available) and encoded data is broken, the check symbol gives you the chance to try and find the wrong characters and fix it, assuming they are no more than a few in then broken row/chunk. But if you use a checksum (like md5 or sha1) for the entire input, fixing the broken data would be much harder (might be impossible for large input). The purpose of overall md5/sha1 checksum is only validation, not fixing.
 
 
 # How to install it
@@ -85,9 +87,9 @@ For example:
     dsj2 0wvf 41gq 4s90 g
     1wpy x9e- h
 
-When decoding, you never need to pass `-check` flag. We will detect wheather or not the encoded text has check character.
+When decoding, you never need to pass `-check` flag. We will detect whether or not the encoded text has check character.
 
 # Use uppercase letters
 If you want to encode with uppercase letters, pass `-u` flag.
 
-When docoding, lowercase and uppercase letters are the same (so you can even mix them)
+When decoding, lowercase and uppercase letters are the same (so you can even mix them)
