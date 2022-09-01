@@ -10,7 +10,7 @@ func splitBytesIntoChunks(data []byte, size int) [][]byte {
 		chunks = append(chunks, chunk)
 	}
 	if len(data) > 0 {
-		chunks = append(chunks, data[:len(data)])
+		chunks = append(chunks, data[:])
 	}
 	return chunks
 }
@@ -23,7 +23,7 @@ func splitStringIntoChunks(data string, size int) []string {
 		chunks = append(chunks, chunk)
 	}
 	if len(data) > 0 {
-		chunks = append(chunks, data[:len(data)])
+		chunks = append(chunks, data[:])
 	}
 	return chunks
 }
