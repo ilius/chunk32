@@ -49,7 +49,7 @@ func testChunk32(t *testing.T, withCheck bool) {
 		text2 := string(text2Bytes)
 		if text2 != text {
 			tmpFilePath := filepath.Join(os.TempDir(), "chunk32-"+fname)
-			err := ioutil.WriteFile(tmpFilePath, text2Bytes, 0777)
+			err := ioutil.WriteFile(tmpFilePath, text2Bytes, 0o777)
 			if err != nil {
 				t.Log(err)
 			}
