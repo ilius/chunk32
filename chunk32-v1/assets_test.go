@@ -14,7 +14,6 @@ import (
 	"compress/gzip"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -92,7 +91,7 @@ func test1() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "test1", size: 690, mode: os.FileMode(436), modTime: time.Unix(1524023998, 0)}
+	info := bindataFileInfo{name: "test1", size: 690, mode: os.FileMode(0o664), modTime: time.Unix(1524023998, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -112,7 +111,7 @@ func test2() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "test2", size: 818, mode: os.FileMode(436), modTime: time.Unix(1524024240, 0)}
+	info := bindataFileInfo{name: "test2", size: 818, mode: os.FileMode(0o664), modTime: time.Unix(1524024240, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -132,7 +131,7 @@ func test3() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "test3", size: 753, mode: os.FileMode(436), modTime: time.Unix(1524024335, 0)}
+	info := bindataFileInfo{name: "test3", size: 753, mode: os.FileMode(0o664), modTime: time.Unix(1524024335, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -152,7 +151,7 @@ func test4() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "test4", size: 2335, mode: os.FileMode(436), modTime: time.Unix(1524029078, 0)}
+	info := bindataFileInfo{name: "test4", size: 2335, mode: os.FileMode(0o664), modTime: time.Unix(1524029078, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -172,7 +171,7 @@ func test5() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "test5", size: 1475, mode: os.FileMode(436), modTime: time.Unix(1524029089, 0)}
+	info := bindataFileInfo{name: "test5", size: 1475, mode: os.FileMode(0o664), modTime: time.Unix(1524029089, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -300,7 +299,7 @@ func RestoreAsset(dir, name string) error {
 	if err != nil {
 		return err
 	}
-	err = ioutil.WriteFile(_filePath(dir, name), data, info.Mode())
+	err = os.WriteFile(_filePath(dir, name), data, info.Mode())
 	if err != nil {
 		return err
 	}
