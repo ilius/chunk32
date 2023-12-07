@@ -21,7 +21,7 @@ The benefit of splitting into chunks (each becoming a line), is that we can take
 # How to install it
 First [install Go](https://golang.org/doc/install), then open a command line and run:
 
-    go install github.com/ilius/chunk32@latest
+    go install github.com/ilius/chunk32/chunk32-v1@latest
 
 
 # Encode a file (in Linux/Unix)
