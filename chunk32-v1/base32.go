@@ -13,8 +13,10 @@ import (
 
 //go:generate go run genalphabet.go
 
-var bigRadix = big.NewInt(32)
-var bigZero = big.NewInt(0)
+var (
+	bigRadix = big.NewInt(32)
+	bigZero  = big.NewInt(0)
+)
 
 func decode(s string) ([]byte, *big.Int, error) {
 	bigVal := big.NewInt(0)
