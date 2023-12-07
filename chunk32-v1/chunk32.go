@@ -7,8 +7,6 @@ import (
 	"encoding/hex"
 	"log"
 	"strings"
-
-	"github.com/ilius/crock32"
 )
 
 var CHUNK_SIZE = 10 // should be a factor of 5
@@ -27,14 +25,14 @@ func addSpacesToPlainTextLine(line string, size int) string {
 }
 
 func encodeChunk(chunk []byte) string {
-	line := crock32.Encode(chunk)
+	line := Encode(chunk)
 	line = addTrailingDashes(line, 4)
 	line = addSpacesToPlainTextLine(line, 4)
 	return line
 }
 
 func encodeChunkWithCheck(chunk []byte) string {
-	line := crock32.CheckEncode(chunk)
+	line := CheckEncode(chunk)
 	n := len(line)
 	line, lastByte := line[:n-1], line[n-1]
 	line = addTrailingDashes(line, 4)
@@ -60,11 +58,11 @@ func Chunk32Encode(data []byte, check bool) string {
 func decodeChunk(line string, allowCheck bool) (bool, []byte, error) {
 	if allowCheck && len(line)%4 == 1 {
 		line = strings.Replace(line, "-", "", -1)
-		chunk, err := crock32.CheckDecode(line)
+		chunk, err := CheckDecode(line)
 		return true, chunk, err
 	} else {
 		line = strings.Replace(line, "-", "", -1)
-		chunk, err := crock32.Decode(line)
+		chunk, err := Decode(line)
 		return false, chunk, err
 	}
 }
