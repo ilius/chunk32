@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"compress/gzip"
 	"io/ioutil"
+	"log"
 	"os"
 	"path/filepath"
 	"testing"
@@ -20,7 +21,10 @@ var testFileNames = []string{
 func gzipString(s string) []byte {
 	var b bytes.Buffer
 	w := gzip.NewWriter(&b)
-	w.Write([]byte(s))
+	_, err := w.Write([]byte(s))
+	if err != nil {
+		log.Println(err)
+	}
 	w.Close()
 	return b.Bytes()
 }
