@@ -3,7 +3,7 @@ package main
 import (
 	"bytes"
 	"compress/gzip"
-	"io/ioutil"
+	"io"
 	"log"
 	"os"
 	"path/filepath"
@@ -34,7 +34,7 @@ func gunzipBytes(b []byte) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	return ioutil.ReadAll(reader)
+	return io.ReadAll(reader)
 }
 
 func testChunk32(t *testing.T, withCheck bool) {
@@ -53,7 +53,7 @@ func testChunk32(t *testing.T, withCheck bool) {
 		text2 := string(text2Bytes)
 		if text2 != text {
 			tmpFilePath := filepath.Join(os.TempDir(), "chunk32-"+fname)
-			err := ioutil.WriteFile(tmpFilePath, text2Bytes, 0o777)
+			err := os.WriteFile(tmpFilePath, text2Bytes, 0o777)
 			if err != nil {
 				t.Log(err)
 			}

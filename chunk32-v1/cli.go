@@ -5,13 +5,13 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"strings"
 )
 
 func encodeFromStdin(upper bool, check bool, noNewline bool) {
-	input, _ := ioutil.ReadAll(os.Stdin)
+	input, _ := io.ReadAll(os.Stdin)
 	if len(input) == 0 {
 		return
 	}
@@ -31,7 +31,7 @@ func encodeFromStdin(upper bool, check bool, noNewline bool) {
 }
 
 func decodeFromStdin(noNewline bool) {
-	input, _ := ioutil.ReadAll(os.Stdin)
+	input, _ := io.ReadAll(os.Stdin)
 	if len(input) == 0 {
 		return
 	}
