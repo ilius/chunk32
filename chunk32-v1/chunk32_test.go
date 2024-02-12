@@ -25,7 +25,10 @@ func gzipString(s string) []byte {
 	if err != nil {
 		log.Println(err)
 	}
-	w.Close()
+	err = w.Close()
+	if err != nil {
+		panic(err)
+	}
 	return b.Bytes()
 }
 
