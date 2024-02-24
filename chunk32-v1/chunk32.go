@@ -13,7 +13,7 @@ var CHUNK_SIZE = 10 // should be a factor of 5
 
 func addTrailingDashes(line string, size int) string {
 	n := len(line)
-	m := (int((n-1)/size) + 1) * size
+	m := ((n-1)/size + 1) * size
 	if m > n {
 		line = line + strings.Repeat("-", m-n)
 	}
