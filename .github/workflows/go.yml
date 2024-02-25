@@ -22,7 +22,7 @@ jobs:
         go-version: 1.19
 
     - name: Build
-      run: go build -v ./...
+      run: go build -o chunk32-v1.bin ./chunk32-v1
 
     - name: Test
       run: go test -v ./...
