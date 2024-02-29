@@ -15,7 +15,7 @@ func addTrailingDashes(line string, size int) string {
 	n := len(line)
 	m := ((n-1)/size + 1) * size
 	if m > n {
-		line = line + strings.Repeat("-", m-n)
+		line += strings.Repeat("-", m-n)
 	}
 	return line
 }
@@ -57,14 +57,13 @@ func Chunk32Encode(data []byte, check bool) string {
 // `line` must not have spaces
 func decodeChunk(line string, allowCheck bool) (bool, []byte, error) {
 	if allowCheck && len(line)%4 == 1 {
-		line = strings.Replace(line, "-", "", -1)
+		line = strings.ReplaceAll(line, "-", "")
 		chunk, err := CheckDecode(line)
 		return true, chunk, err
-	} else {
-		line = strings.Replace(line, "-", "", -1)
-		chunk, err := Decode(line)
-		return false, chunk, err
 	}
+	line = strings.ReplaceAll(line, "-", "")
+	chunk, err := Decode(line)
+	return false, chunk, err
 }
 
 func Chunk32Decode(text string) ([]byte, error) {
@@ -72,7 +71,7 @@ func Chunk32Decode(text string) ([]byte, error) {
 	chunks := make([][]byte, 0, len(lines))
 	allowCheck := true
 	for lineIndex, line := range lines {
-		line = strings.Replace(line, " ", "", -1)
+		line = strings.ReplaceAll(line, " ", "")
 		hadCheck, chunk, err := decodeChunk(line, allowCheck)
 		if err != nil {
 			return nil, err
